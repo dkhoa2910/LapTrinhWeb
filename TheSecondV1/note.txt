@@ -1,0 +1,29 @@
+không được tạo tài khoản bằng google, có thể đăng nhập bằng id, mật khẩu 
+hạn chế nhúng API   
+có các web site bắt buộc phải sử dụng email để tạo tài khoản thay cho user -> xác thực tài khoản, không cho người dùng DDos trang web, ràng buộc mỗi người tức mỗi email chỉ được có 1 tài khoản.
+có thể sử dụng email là một trường đăng nhập. 
+-> xác thực 2 yếu tố. 
+-> thiết lập quên mật khẩu -> mỗi người 1 mật khẩu, nhưng có thể khôi phục. 
+- nhiều trang web có thể chỉ cần đăng kí bằng email và passwword -> những thông tin còn lại bổ sung qua quá trình sử dụng trang web 
+SELECT * FROM ten_bang WHERE dieu_kien; [1] (https://www.studocu.vn/vn/document/hoc-vien-ngan-hang/co-so-du-lieu-i/tong-hop-cau-lenh-truy-van-sql/42828634), [2] (https://datapot.edu.vn/kien-thuc/tai-lieu-tu-hoc-sql-phan-3-cau-lenh-where-va-truy-van-co-dieu-kien-trong-sql)
+lệnh headed nếu câu select thực hiện thành công 
+
+
+sử dụng ajax để kiểm tra user name và passwword đã tồn tại hay chưa 
+ajax tải nội dung mà không cần load lại trang. nhiều công dụng.
+
+
+
+-Tìm Kiếm: 
++ có bộ đề xuất cho người tìm kiếm.
++ iphone 12 thì đề xuất tìm kiếm cho người dùng. 
+
+-Phân trang:
+
+- nhúng bình luận từ các trang mạng xã hội vào trang web của người dùng. 
+- bình luận nhưng lưu trong csdl của mình 
+
+- mã captcha tránh bị DDos 
+- ràng buộc bình luận, ràng buộc tương tác cho người dùng 
+- cần dùng những chỗ nào. 
+

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Nhập / Đăng Ký – TheSecond</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="header-inner">
+            <a href="index.php" class="logo-brand">
+                <div class="logo-icon"><i data-lucide="zap"></i></div>
+                <div class="logo-title">TheSecond</div>
+            </a>
+<form class="header-search" action="see_all_pd.php" method="GET">
+    <i data-lucide="search"></i>
+    <input type="text" name="q" placeholder="Tìm kiếm iPhone, Macbook..." required>
+    <button type="submit" style="display: none;"></button>
+</form>
+            <div class="user-controls">
+                <a href="auth.html" class="nav-link active header-login-btn">
+                    <i data-lucide="log-in"></i> Đăng nhập
+                </a>
+            </div>
+        </div>
+        <div class="header-nav-bar">
+            <div class="header-nav-bar-inner">
+                <nav class="main-nav">
+                    <a href="index.php" class="nav-link"><i data-lucide="home"></i> Trang chủ</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="auth-page-wrapper">
+        <div class="auth-box">
+
+            <!-- ================= ĐĂNG NHẬP ================= -->
+            <div id="login-section" class="auth-form-section active">
+                <div class="auth-icon-wrap"><i data-lucide="lock"></i></div>
+                <h1 class="auth-title">Đăng Nhập Hệ Thống</h1>
+                <p class="auth-sub">Nhập tài khoản của bạn để tiếp tục trải nghiệm</p>
+
+                <form id="login-form" onsubmit="return handleLogin(event)">
+                    <div style="margin-bottom: 20px;">
+                        <label class="form-label">Email truy cập</label>
+                        <input type="email" id="login-email" class="form-control"
+                               placeholder="your@email.com" list="recent-login-accounts" required>
+                        <datalist id="recent-login-accounts"></datalist>
+                    </div>
+
+                    <div style="margin-bottom: 24px;">
+                        <label class="form-label">Mật khẩu bảo mật</label>
+                        <div class="password-wrapper">
+                            <input type="password" id="login-pw" class="form-control"
+                                   placeholder="Tối thiểu 6 ký tự" required>
+                            <button type="button" class="password-toggle" onclick="togglePassword('login-pw')">
+                                <i data-lucide="eye"></i>
+                            </button>
+                        </div>
+                        <div style="text-align: right; margin-top: 8px;">
+                            <a href="#" onclick="switchAuthForm('forgot'); return false;"
+                               style="font-size: 13px; color: #4f46e5; text-decoration: none; font-weight: 500;">
+                                Quên mật khẩu?
+                            </a>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn">
+                        <i data-lucide="log-in" style="width: 18px; height: 18px;"></i>
+                        Xác Thực Đăng Nhập
+                    </button>
+
+                    <div class="auth-switch">
+                        Chưa có tài khoản?
+                        <button type="button" onclick="switchAuthForm('register')">Đăng ký ngay</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- ================= ĐĂNG KÝ ================= -->
+            <div id="register-section" class="auth-form-section">
+                <div class="auth-icon-wrap"><i data-lucide="user-plus"></i></div>
+                <h1 class="auth-title">Tạo Tài Khoản</h1>
+                <p class="auth-sub">Điền thông tin để đăng ký tài khoản TheSecond</p>
+
+                <form id="register-form" onsubmit="return handleRegister(event)">
+                    <div style="margin-bottom: 16px;">
+                        <label class="form-label">Họ và tên</label>
+                        <input type="text" id="reg-name" class="form-control"
+                               placeholder="Ví dụ: Nguyễn Văn A" required>
+                    </div>
+
+                    <div style="margin-bottom: 16px;">
+                        <label class="form-label">Email truy cập</label>
+                        <input type="email" id="reg-email" class="form-control"
+                               placeholder="your@email.com" required>
+                    </div>
+
+                    <div style="margin-bottom: 24px;">
+                        <label class="form-label">Mật khẩu</label>
+                        <div class="password-wrapper">
+                            <input type="password" id="reg-pw" class="form-control"
+                                   placeholder="Tối thiểu 6 ký tự" required minlength="6">
+                            <button type="button" class="password-toggle" onclick="togglePassword('reg-pw')">
+                                <i data-lucide="eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn">
+                        <i data-lucide="user-plus" style="width: 18px; height: 18px;"></i>
+                        Tạo Tài Khoản
+                    </button>
+
+                    <div class="auth-switch">
+                        Đã có tài khoản?
+                        <button type="button" onclick="switchAuthForm('login')">Đăng nhập ngay</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- ================= QUÊN MẬT KHẨU ================= -->
+            <div id="forgot-section" class="auth-form-section">
+                <div class="auth-icon-wrap"><i data-lucide="key"></i></div>
+                <h1 class="auth-title">Khôi Phục Mật Khẩu</h1>
+                <p class="auth-sub">Nhập email đăng ký tài khoản của bạn để nhận mã OTP khôi phục.</p>
+
+                <form id="forgot-form" onsubmit="return handleForgot(event)">
+                    <div style="margin-bottom: 24px;">
+                        <label class="form-label">Địa chỉ Email</label>
+                        <input type="email" id="forgot-email" class="form-control"
+                               placeholder="example@domain.com" required>
+                    </div>
+
+                    <button type="submit" class="btn">
+                        <i data-lucide="send" style="width: 18px; height: 18px;"></i>
+                        Gửi yêu cầu OTP
+                    </button>
+
+                    <div class="auth-switch">
+                        Nhớ mật khẩu?
+                        <button type="button" onclick="switchAuthForm('login')">Quay lại đăng nhập</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- ================= ĐẶT LẠI MẬT KHẨU ================= -->
+            <div id="reset-section" class="auth-form-section">
+                <div class="auth-icon-wrap"><i data-lucide="shield-check"></i></div>
+                <h1 class="auth-title">Đặt Lại Mật Khẩu</h1>
+                <p class="auth-sub">Vui lòng kiểm tra mã OTP và thiết lập mật khẩu mới.</p>
+
+                <form id="reset-form" onsubmit="return handleReset(event)">
+                    <div style="margin-bottom: 16px;">
+                        <label class="form-label">Mã OTP (6 chữ số)</label>
+                        <input type="text" id="reset-otp" class="form-control" maxlength="6"
+                               placeholder="******"
+                               style="text-align: center; letter-spacing: 4px; font-weight: bold; font-family: monospace; font-size: 18px;"
+                               required>
+                    </div>
+
+                    <div style="margin-bottom: 16px;">
+                        <label class="form-label">Mật khẩu mới</label>
+                        <div class="password-wrapper">
+                            <input type="password" id="reset-pw" class="form-control"
+                                   placeholder="Tối thiểu 6 ký tự" required minlength="6">
+                            <button type="button" class="password-toggle" onclick="togglePassword('reset-pw')">
+                                <i data-lucide="eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 24px;">
+                        <label class="form-label">Xác nhận mật khẩu</label>
+                        <div class="password-wrapper">
+                            <input type="password" id="reset-pw-confirm" class="form-control"
+                                   placeholder="Nhập lại mật khẩu mới" required minlength="6">
+                            <button type="button" class="password-toggle" onclick="togglePassword('reset-pw-confirm')">
+                                <i data-lucide="eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn">
+                        <i data-lucide="check-circle" style="width: 18px; height: 18px;"></i>
+                        Đổi Mật Khẩu
+                    </button>
+
+                    <div class="auth-switch">
+                        <button type="button" onclick="switchAuthForm('login')">Hủy và quay lại đăng nhập</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div style="max-width: 1280px; margin: 0 auto;">
+            <h2>THESECOND</h2>
+            <p>Nền tảng mua bán đồ điện tử cũ an toàn nhất.</p>
+        </div>
+    </footer>
+
+    <script src="../assets/js/script.js"></script>
+    <script>
+
+        function switchAuthForm(target) {
+            const sections = ['login', 'register', 'forgot', 'reset'];
+            sections.forEach(sec => {
+                const el = document.getElementById(sec + '-section');
+                if (el) el.classList.remove('active');
+            });
+            const targetEl = document.getElementById(target + '-section');
+            if (targetEl) targetEl.classList.add('active');
+        }
+
+        let forgotEmailCache = '';
+
+        function handleForgot(event) {
+            event.preventDefault();
+            const email = document.getElementById('forgot-email').value.trim();
+            if (!email) return false;
+
+            forgotEmailCache = email;
+            alert('Mã OTP đã được gửi tới ' + email + '\n(Demo: dùng OTP 123456)');
+            switchAuthForm('reset');
+            return false;
+        }
+
+        function handleReset(event) {
+            event.preventDefault();
+
+            const otp       = document.getElementById('reset-otp').value.trim();
+            const pw        = document.getElementById('reset-pw').value;
+            const pwConfirm = document.getElementById('reset-pw-confirm').value;
+
+            if (otp !== '123456') {
+                alert('Mã OTP không đúng.\n(Demo: nhập 123456)');
+                return false;
+            }
+            if (pw.length < 6) {
+                alert('Mật khẩu mới phải có ít nhất 6 ký tự.');
+                return false;
+            }
+            if (pw !== pwConfirm) {
+                alert('Mật khẩu xác nhận không khớp.');
+                return false;
+            }
+
+            alert('Đặt lại mật khẩu thành công! Vui lòng đăng nhập lại.');
+            document.getElementById('reset-otp').value = '';
+            document.getElementById('reset-pw').value = '';
+            document.getElementById('reset-pw-confirm').value = '';
+            switchAuthForm('login');
+
+            if (forgotEmailCache) {
+                document.getElementById('login-email').value = forgotEmailCache;
+            }
+            return false;
+        }
+
+        const RECENT_LOGIN_KEY = 'thesecond_recent_login_accounts';
+
+        function renderRecentLoginAccounts() {
+            const datalist = document.getElementById('recent-login-accounts');
+            if (!datalist) return;
+            try {
+                const accounts = JSON.parse(localStorage.getItem(RECENT_LOGIN_KEY) || '[]');
+                datalist.innerHTML = '';
+                (Array.isArray(accounts) ? accounts : []).forEach(account => {
+                    const option = document.createElement('option');
+                    option.value = account;
+                    datalist.appendChild(option);
+                });
+            } catch (e) {}
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            renderRecentLoginAccounts();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+        });
+    </script>
+</body>
+</html>
